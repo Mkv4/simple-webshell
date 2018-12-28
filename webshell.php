@@ -83,14 +83,6 @@ if($_POST['default_pass'] == $default_pass) {
 	        font-size:16px;
             transition: color 1s;
         }
-		
-		.body {
-			background-image: url('https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2016/whatisthedar.jpg');
-			background-position: center center;
-			background-repeat: no-repeat;
-			background-attachment: fixed;
-			background-size: cover;
-		}
     </style>
 		</body>
 		</html>";
