@@ -2,7 +2,7 @@
 /*************
 # H3CK3R SH3LL
 # Made by: @It0sh1
-# Github: 
+# Github: https://github.com/It0sh1/simple-webshell
 **************/
 
 // start the session
