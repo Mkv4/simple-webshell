@@ -1,5 +1,5 @@
 # simple-webshell - H3CK3R SH3LL
-This is a very simple PhP webshell, here are some
+This is a very simple PHP webshell, here are some
 functions i added to the .php file:
 
 * Login and logout system.
