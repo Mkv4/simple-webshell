@@ -7,7 +7,7 @@ functions i added to the .php file:
 * Deface function.
 * Self-remove option.
 
-**Updates V1.0.4**
+**Updates V1.0.4:**
 
 * Fixed some bugs.
 * Added 404 backdoor.
