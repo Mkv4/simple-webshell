@@ -14,7 +14,7 @@ functions i added to the .php file:
 
 ## Access the 404 Backdoor ↓
 In the urlbar of your browser you see: _../webshell.php_ (The webshell)
-just add 'backdoor=1' for webshell.php 
+just add 'backdoor=1' for (.php) 
 ```
 example: example.com/uploaded/files/../webshell.php?backdoor=1
 ```
