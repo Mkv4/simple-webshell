@@ -12,4 +12,13 @@ functions i added to the .php file:
 * Fixed some bugs.
 * Added 404 backdoor.
 
+## Access the 404 Backdoor ↓
+In the urlbar of your browser you see: _../webshell.php_ (The webshell)
+just add 'backdoor=1' for webshell.php 
+```
+example: example.com/uploaded/files/../webshell.php?backdoor=1
+```
+And then the hidden login page will shown up.
+<hr />
+
 **Note:** This script can always be updated and functions can be removed or added.
