@@ -1,5 +1,5 @@
 # simple-webshell - H3CK3R SH3LL v1.0.4(New update)
-This is a very simple PHP webshell, here are some
+This is a very simple PHP webshell. here are some
 functions i added to the .php file:
 
 * Login and logout system.
@@ -13,12 +13,9 @@ functions i added to the .php file:
 * Added 404 backdoor.
 
 ## Access the 404 Backdoor ↓
-In the urlbar of your browser you see: _../webshell.php_ (The webshell)
-just add 'backdoor=1' for (.php) 
-```
-example: example.com/uploaded/files/../webshell.php?backdoor=1
-```
-And then the hidden login page will shown up.
+At the end of the url you see: _example.com/../__webshell.php___ <br />
+add this after the .php extension: __webshell.php__ `?backdoor=1`.<br />
+The login page of the webshell will show up and have fun! :p
 <hr />
 
 **Note:** This script can always be updated and functions can be removed or added.
