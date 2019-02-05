@@ -7,6 +7,7 @@ functions i added to the .php file:
 * Deface function.
 * Self-remove option.
 
+<hr />
 **Updates V1.0.4:**
 
 * Fixed some bugs.
