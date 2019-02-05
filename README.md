@@ -14,7 +14,9 @@ functions i added to the .php file:
 * Fixed some bugs.
 * Added 404 backdoor.
 
-## Access the 404 Backdoor ↓
+<hr />
+
+### Access the 404 Backdoor ↓
 At the end of the url you see: _example.com/../__webshell.php___ <br />
 add this after the .php extension: __webshell.php__ `?backdoor=1`.<br />
 The login page of the webshell will show up and have fun! :p
